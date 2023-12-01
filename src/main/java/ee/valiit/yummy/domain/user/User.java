@@ -1,6 +1,7 @@
 package ee.valiit.yummy.domain.user;
 
-import com.example.recipe_back.domain.role.Role;
+
+import ee.valiit.yummy.domain.role.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

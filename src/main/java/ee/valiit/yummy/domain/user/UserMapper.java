@@ -1,6 +1,6 @@
 package ee.valiit.yummy.domain.user;
 
-import com.example.recipe_back.business.login.dto.LoginDto;
+import ee.valiit.yummy.business.login.dto.LoginDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

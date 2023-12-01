@@ -1,6 +1,6 @@
 package ee.valiit.yummy.domain.user;
 
-import com.example.recipe_back.infrastructure.validation.ValidationService;
+import ee.valiit.yummy.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
