@@ -9,7 +9,7 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
 
-    @Mapping(source = "id", target = "id")
+    @Mapping(source = "id", target = "userId")
     @Mapping(source = "role.name", target = "roleName")
     LoginDto toLoginDto(User user);
 }
