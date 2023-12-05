@@ -1,5 +1,7 @@
 package ee.valiit.yummy.domain.recipe;
 
+import ee.valiit.yummy.domain.course.Course;
+import ee.valiit.yummy.domain.image.Image;
 import ee.valiit.yummy.domain.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

@@ -24,7 +24,7 @@ public class RecipeDto implements Serializable {
     private String imageData;
     @NotNull
     @Size(max = 255)
-    private String name;
+    private String recipeName;
     @NotNull
     private LocalTime time;
     @NotNull

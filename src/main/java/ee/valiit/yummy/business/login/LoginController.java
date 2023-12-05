@@ -21,9 +21,4 @@ public class LoginController {
         return loginService.login(username, password);
     }
 
-    @GetMapping("/recipe")
-    public RecipeDto something() {
-        return null;
-    }
-
 }

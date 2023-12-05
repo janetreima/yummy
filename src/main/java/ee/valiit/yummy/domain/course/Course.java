@@ -1,24 +1,26 @@
-package ee.valiit.yummy.domain.recipe;
+package ee.valiit.yummy.domain.course;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "image", schema = "project")
-public class Image {
+@Table(name = "course", schema = "project")
+public class Course {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Size(max = 255)
     @NotNull
-    @Column(name = "data", nullable = false)
-    private byte[] data;
+    @Column(name = "name", nullable = false)
+    private String name;
 
 }
