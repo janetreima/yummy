@@ -14,6 +14,6 @@ public interface UserMapper {
     @Mapping(source = "role.name", target = "roleName")
     LoginDto toLoginDto(User user);
 
-    User userFromUserDto(UserInfoDto userInfoDto);
+    User userFromUserDto(UserInfoDto userInfoDto);   // iz userInfoDto ja zapolnjaju User
 
 }
