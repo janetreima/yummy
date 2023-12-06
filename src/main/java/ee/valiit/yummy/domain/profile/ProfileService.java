@@ -12,8 +12,8 @@ public class ProfileService {
     @Resource
     private ProfileRepository profileRepository;
 
-    public Profile saveProfile(Profile profile){
-        return  profileRepository.save(profile);
+    public void saveProfile(Profile profile){
+        profileRepository.save(profile);
     }
 
 }
