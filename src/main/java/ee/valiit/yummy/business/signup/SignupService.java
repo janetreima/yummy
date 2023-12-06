@@ -26,9 +26,9 @@ public class SignupService {
 
     public void signUp(UserInfoDto userInfoDto) {
 
-        User user = userMapper.userFromUserDto(userInfoDto);    //sozdal User user 1)
-        user.setRole(new Role(2, "user"));   //  2) prinuditeljno zahardkodil Role=2
-        userService.saveUser(user);                //  3) sohranjaju v tablicu user
+        User user = userMapper.userFromUserDto(userInfoDto);                   //sozdal User user 1)
+        user.setRole(new Role(2, "user"));                           //  2) prinuditeljno zahardkodil Role=2
+        userService.saveUser(user);                                           //  3) sohranjaju v tablicu user
         Profile profile = profileMapper.profileFromUserDto(userInfoDto);
         profile.setUser(user);
         profileService.saveProfile(profile);
