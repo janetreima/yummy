@@ -17,14 +17,14 @@ public class RecipesService {
     @Resource
     private RecipeMapper recipeMapper;
 
-    public List<RecipeDto> getAllRecipes() {
+    public List<RecipeBasicDto> getAllRecipes() {
         List<Recipe> recipes = recipeService.getAllRecipes();
-        return recipeMapper.toRecipeDtos(recipes);
+        return recipeMapper.toRecipeBasicDto(recipes);
     }
 
 
-    public Recipe addRecipe(RecipeDto recipeDto) {
-        Recipe recipe = recipeMapper.toRecipe(recipeDto);
+    public Recipe addRecipe(RecipeBasicDto recipeBasicDto) {
+        Recipe recipe = recipeMapper.toRecipe(recipeBasicDto);
         return recipe;
     }
 }

@@ -19,15 +19,15 @@ public class RecipesController {
 
     @GetMapping("/recipes")
     @Operation(summary = "leiab koik retseptid")
-    public List<RecipeDto> getAllRecipes() {
+    public List<RecipeBasicDto> getAllRecipes() {
         return recipesService.getAllRecipes();
 
     }
 
     @PostMapping("/recipe")
     @Operation(summary = "liisab uut retsepti")
-    public void addRecipe(@RequestBody RecipeDto recipeDto) {
-        recipesService.addRecipe(recipeDto);
+    public void addRecipe(@RequestBody RecipeBasicDto recipeBasicDto) {
+        recipesService.addRecipe(recipeBasicDto);
     }
 
 }

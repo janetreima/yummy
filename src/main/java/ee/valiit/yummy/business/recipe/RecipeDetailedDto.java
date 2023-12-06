@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 
 /**
  * DTO for {@link ee.valiit.yummy.domain.recipe.Recipe}
@@ -15,7 +14,7 @@ import java.time.LocalTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecipeDto implements Serializable {
+public class RecipeDetailedDto implements Serializable {
     private Integer recipeId;
     private Integer userId;
     private Integer courseId;
