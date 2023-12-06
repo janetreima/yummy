@@ -1,6 +1,6 @@
 package ee.valiit.yummy.domain.recipe;
 
-import ee.valiit.yummy.domain.course.Course;
+import ee.valiit.yummy.domain.recipe.course.Course;
 import ee.valiit.yummy.domain.image.Image;
 import ee.valiit.yummy.domain.user.User;
 import jakarta.persistence.*;
@@ -8,8 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -41,8 +39,8 @@ public class Recipe {
     private String name;
 
     @NotNull
-    @Column(name = "\"time\"", nullable = false)
-    private LocalTime time;
+    @Column(name = "time_minute", nullable = false)
+    private Integer timeMinute;
 
     @Size(max = 1000)
     @NotNull

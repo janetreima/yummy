@@ -1,4 +1,4 @@
-package ee.valiit.yummy.business.recipe;
+package ee.valiit.yummy.business.recipe.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalTime;
+import java.util.List;
 
 /**
  * DTO for {@link ee.valiit.yummy.domain.recipe.Recipe}
@@ -15,21 +15,14 @@ import java.time.LocalTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecipeDto implements Serializable {
-    private Integer recipeId;
-    private Integer userId;
-    private Integer courseId;
-    private String courseName;
-    private Integer imageId;
-    private String imageData;
+public class RecipeDetailedDto implements Serializable {
+
     @NotNull
     @Size(max = 255)
     private String recipeName;
-    @NotNull
-    private LocalTime time;
-    @NotNull
-    @Size(max = 1000)
+    private Integer courseId;
+    private List<AllergenDto> allergenInfos;
+    private Integer timeMinute;
     private String description;
-    @NotNull
-    private String status;
+    private String imageData;
 }

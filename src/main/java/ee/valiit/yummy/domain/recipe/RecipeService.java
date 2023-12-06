@@ -16,4 +16,11 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
+    public void saveRecipe(Recipe recipe) {
+        recipeRepository.save(recipe);
+    }
+
+
+
+
 }
