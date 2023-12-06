@@ -24,9 +24,19 @@ public class RecipesService {
         return recipeMapper.toRecipeBasicDto(recipes);
     }
 
+    public RecipeDetailedDto getRecipe(Integer recipeId) {
+        Recipe recipe = recipeService.getRecipe(recipeId);
+        return recipeMapper.toRecipeDetailedDto(recipe);
+    }
 
     public Recipe addRecipe(RecipeDetailedDto recipeBasicDto) {
 //        Recipe recipe = recipeMapper.toRecipe(recipeBasicDto);
         return null;
     }
+
+    public void getAllergens(Integer recipeId) {
+// todo tuleb kätte saada list allergeenidest List<AllergenDto> ja panna see RecipeDetailedDtosse.
+    }
 }
+
+

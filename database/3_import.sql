@@ -44,6 +44,7 @@ INSERT INTO project.tag (id, name) VALUES (DEFAULT, 'kala');
 INSERT INTO project.tag (id, name) VALUES (DEFAULT, 'tervislik');
 
 INSERT INTO project.recipe_allergen (id, recipe_id, allergen_id) VALUES (DEFAULT, 1, 2);
+INSERT INTO project.recipe_allergen (id, recipe_id, allergen_id) VALUES (DEFAULT, 1, 1);
 
 INSERT INTO project.recipe_tag (id, tag_id, recipe_id) VALUES (DEFAULT, 1, 1);
 
