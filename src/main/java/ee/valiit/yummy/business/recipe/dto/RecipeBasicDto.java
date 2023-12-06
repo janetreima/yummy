@@ -1,4 +1,4 @@
-package ee.valiit.yummy.business.recipe;
+package ee.valiit.yummy.business.recipe.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package ee.valiit.yummy.domain.course;
+package ee.valiit.yummy.domain.recipe.course;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

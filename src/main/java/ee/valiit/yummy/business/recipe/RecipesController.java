@@ -1,11 +1,10 @@
 package ee.valiit.yummy.business.recipe;
 
+import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
+import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,10 +23,18 @@ public class RecipesController {
 
     }
 
+
     @PostMapping("/recipe")
-    @Operation(summary = "liisab uut retsepti")
-    public void addRecipe(@RequestBody RecipeBasicDto recipeBasicDto) {
-        recipesService.addRecipe(recipeBasicDto);
+    @Operation(summary = "lisab uue retsepti")
+    public void addRecipe(@RequestParam Integer userId, @RequestBody RecipeDetailedDto recipeDetailedDto) {
+        recipesService.addRecipe(recipeDetailedDto);
     }
+
+    @PutMapping("/recipe")
+    @Operation(summary = "muudab retsepti")
+    public void editRecipe(@RequestParam Integer recipeId, @RequestBody RecipeDetailedDto recipeDetailedDto) {
+        // todo evgeni
+    }
+
 
 }

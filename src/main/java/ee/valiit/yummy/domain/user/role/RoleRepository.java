@@ -1,4 +1,4 @@
-package ee.valiit.yummy.domain.role;
+package ee.valiit.yummy.domain.user.role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

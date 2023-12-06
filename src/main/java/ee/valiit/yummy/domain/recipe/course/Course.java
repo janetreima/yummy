@@ -1,4 +1,4 @@
-package ee.valiit.yummy.domain.role;
+package ee.valiit.yummy.domain.recipe.course;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,8 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "role", schema = "project")
-public class Role {
+@Table(name = "course", schema = "project")
+public class Course {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;

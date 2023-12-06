@@ -1,5 +1,7 @@
 package ee.valiit.yummy.business.recipe;
 
+import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
+import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
 import ee.valiit.yummy.domain.recipe.Recipe;
 import ee.valiit.yummy.domain.recipe.RecipeMapper;
 import ee.valiit.yummy.domain.recipe.RecipeService;
@@ -23,8 +25,8 @@ public class RecipesService {
     }
 
 
-    public Recipe addRecipe(RecipeBasicDto recipeBasicDto) {
-        Recipe recipe = recipeMapper.toRecipe(recipeBasicDto);
-        return recipe;
+    public Recipe addRecipe(RecipeDetailedDto recipeBasicDto) {
+//        Recipe recipe = recipeMapper.toRecipe(recipeBasicDto);
+        return null;
     }
 }

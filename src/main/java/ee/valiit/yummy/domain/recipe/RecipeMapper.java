@@ -1,6 +1,6 @@
 package ee.valiit.yummy.domain.recipe;
 
-import ee.valiit.yummy.business.recipe.RecipeBasicDto;
+import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
 import org.mapstruct.*;
 
 import java.util.List;
