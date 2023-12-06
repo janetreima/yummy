@@ -39,7 +39,7 @@ public class RecipesService {
         //  EntityService ->
         //  EntityRepository ->
         //  save()
-        // nyyd on olemas image object koos id v''rtusega
+        //  nyyd on olemas image object koos id v''rtusega
 
 
         // TODO leia ulese userId abil User object.
