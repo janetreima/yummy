@@ -25,10 +25,7 @@ public class SignupController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "403", description = "Email on juba olemas.", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public void signUp(@RequestBody UserInfoDto userInfoDto) {
-        System.out.println("Received new info Dto " + userInfoDto);
         signupService.signUp(userInfoDto);
-
-
 
     }
 }
