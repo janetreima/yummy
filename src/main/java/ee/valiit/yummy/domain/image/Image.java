@@ -1,12 +1,10 @@
 package ee.valiit.yummy.domain.image;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.*;
+import java.util.Arrays;
+
 
 @Getter
 @Setter
@@ -14,6 +12,7 @@ import lombok.Setter;
 @Table(name = "image", schema = "project")
 public class Image {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -21,4 +20,13 @@ public class Image {
     @Column(name = "data", nullable = false)
     private byte[] data;
 
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", data=" + Arrays.toString(data) +
+                '}';
+    }
 }
+
+

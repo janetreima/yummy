@@ -10,10 +10,12 @@ import static ee.valiit.yummy.infrastructure.validation.Error.INCORRECT_CREDENTI
 
 public class ValidationService {
 
-public static User getValidUser(Optional<User> optionalUser) {
-    if (optionalUser.isEmpty()) {
-       throw new BusinessException(INCORRECT_CREDENTIALS.getMessage(), INCORRECT_CREDENTIALS.getErrorCode());
+    public static User getValidUser(Optional<User> optionalUser) {
+        if (optionalUser.isEmpty()) {
+            throw new BusinessException(INCORRECT_CREDENTIALS.getMessage(), INCORRECT_CREDENTIALS.getErrorCode());
+        }
+        return optionalUser.get();
     }
-    return optionalUser.get();
-}
+
+
 }
