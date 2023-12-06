@@ -18,7 +18,6 @@ public interface RecipeMapper {
     @Mapping(source = "timeMinute", target = "timeMinute")
     RecipeBasicDto toRecipeBasicDto(Recipe recipe);
 
-    Recipe toRecipe (RecipeBasicDto recipeBasicDto);
 
 
     List<RecipeBasicDto> toRecipeBasicDto(List<Recipe> recipes);

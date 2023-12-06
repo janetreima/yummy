@@ -4,6 +4,7 @@ import ee.valiit.yummy.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
