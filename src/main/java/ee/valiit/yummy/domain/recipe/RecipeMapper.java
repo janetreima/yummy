@@ -17,10 +17,13 @@ public interface RecipeMapper {
     @Mapping(source = "image.id", target = "imageId")
     @Mapping(source = "image.data", target = "imageData", qualifiedByName = "byteArrayToString")
     @Mapping(source = "name", target = "recipeName")
-    @Mapping(source = "time", target = "time")
+    @Mapping(source = "timeMinute", target = "timeMinute")
     @Mapping(source = "description", target = "description")
     @Mapping(source = "status", target = "status")
     RecipeDto toRecipeDto(Recipe recipe);
+
+    Recipe toRecipe (RecipeDto recipeDto);
+
 
     List<RecipeDto> toRecipeDtos(List<Recipe> recipes);
 

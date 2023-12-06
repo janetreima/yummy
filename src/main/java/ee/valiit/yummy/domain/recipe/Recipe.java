@@ -41,8 +41,8 @@ public class Recipe {
     private String name;
 
     @NotNull
-    @Column(name = "\"time\"", nullable = false)
-    private LocalTime time;
+    @Column(name = "time_minute", nullable = false)
+    private Integer timeMinute;
 
     @Size(max = 1000)
     @NotNull
