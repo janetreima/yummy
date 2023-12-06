@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 
 public enum Error {
-    INCORRECT_CREDENTIALS("Vale kasutajanimi või parool", 111);
+    INCORRECT_CREDENTIALS("Vale kasutajanimi või parool, palun proovi uuesti :)", 111);
 
     private final String message;
     private final Integer errorCode;
