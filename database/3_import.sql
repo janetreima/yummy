@@ -24,11 +24,11 @@ INSERT INTO project.measure_unit (id, name) VALUES (DEFAULT, 'l');
 INSERT INTO project.measure_unit (id, name) VALUES (DEFAULT, 'tk');
 INSERT INTO project.measure_unit (id, name) VALUES (DEFAULT, 'tl');
 
-INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id) VALUES (DEFAULT, 1, 1, 2);
-INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id) VALUES (DEFAULT, 1, 2, 4);
-INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id) VALUES (DEFAULT, 1, 3, 1);
-INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id) VALUES (DEFAULT, 2, 4, 2);
-INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id) VALUES (DEFAULT, 2, 5, 4);
+INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity) VALUES (DEFAULT, 1, 1, 2, 1);
+INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity) VALUES (DEFAULT, 1, 2, 4, 1);
+INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity) VALUES (DEFAULT, 1, 3, 1, 1);
+INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity) VALUES (DEFAULT, 2, 4, 2, 1);
+INSERT INTO project.recipe_ingredient (id, recipe_id, ingredient_id, measure_unit_id, quantity) VALUES (DEFAULT, 2, 5, 4, 1);
 
 INSERT INTO project.profile (id, email, user_id, image_id) VALUES (DEFAULT, 'jane@super.ee', 1, null);
 INSERT INTO project.profile (id, email, user_id, image_id) VALUES (DEFAULT, 'vitali@super.ee', 2, null);

@@ -1,12 +1,14 @@
 package ee.valiit.yummy.domain.recipe.recipeingredient;
 
+import ee.valiit.yummy.domain.recipe.Recipe;
 import ee.valiit.yummy.domain.recipe.ingredient.Ingredient;
 import ee.valiit.yummy.domain.recipe.measureunit.MeasureUnit;
-import ee.valiit.yummy.domain.recipe.Recipe;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -32,5 +34,9 @@ public class RecipeIngredient {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "measure_unit_id", nullable = false)
     private MeasureUnit measureUnit;
+
+    @NotNull
+    @Column(name = "quantity", nullable = false)
+    private BigDecimal quantity;
 
 }

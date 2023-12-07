@@ -1,6 +1,5 @@
 package ee.valiit.yummy.business.recipeingredient;
 
-import ee.valiit.yummy.domain.recipe.recipeingredient.RecipeIngredient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * DTO for {@link RecipeIngredient}
+ * DTO for {@link ee.valiit.yummy.domain.recipe.recipeingredient.RecipeIngredient}
  */
 @Data
 @AllArgsConstructor
@@ -19,4 +18,5 @@ public class RecipeIngredientDto implements Serializable {
     private String ingredientName;
     private Integer measureUnitId;
     private String measureUnitName;
+    private Double quantity;
 }
