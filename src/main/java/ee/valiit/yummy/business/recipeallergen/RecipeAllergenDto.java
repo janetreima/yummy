@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Value
 public class RecipeAllergenDto implements Serializable {
-    Integer recipeId;
+
     Integer allergenId;
     String allergenName;
 }
