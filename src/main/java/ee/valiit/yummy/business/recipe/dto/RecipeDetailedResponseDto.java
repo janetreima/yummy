@@ -1,6 +1,7 @@
 package ee.valiit.yummy.business.recipe.dto;
 
 import ee.valiit.yummy.business.recipeallergen.RecipeAllergenDto;
+import ee.valiit.yummy.business.recipeingredient.RecipeIngredientDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -26,4 +27,5 @@ public class RecipeDetailedResponseDto implements Serializable {
     private Integer timeMinute;
     private String description;
     private String imageData;
+    private List<RecipeIngredientDto> ingredientInfos;
 }
