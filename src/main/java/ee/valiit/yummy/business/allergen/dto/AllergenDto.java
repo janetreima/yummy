@@ -1,4 +1,4 @@
-package ee.valiit.yummy.business.recipe.dto;
+package ee.valiit.yummy.business.allergen.dto;
 
 import lombok.Data;
 
@@ -6,5 +6,5 @@ import lombok.Data;
 public class AllergenDto {
     private Integer allergenId;
     private String allergenName;
-    private Boolean isaAvailable;
+    private Boolean isAvailable;
 }
