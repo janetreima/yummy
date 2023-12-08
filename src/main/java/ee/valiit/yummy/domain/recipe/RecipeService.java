@@ -11,6 +11,7 @@ public class RecipeService {
 
     @Resource
     private RecipeRepository recipeRepository;
+    @Resource RecipeMapper recipeMapper;
 
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();

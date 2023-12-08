@@ -7,9 +7,18 @@ import org.springframework.stereotype.Service;
 public class ImageService {
 
     @Resource
-    private  ImageRepository imageRepository;
+    private ImageRepository imageRepository;
 
+    //    public void saveImage(Image image) {
+//        imageRepository.save(image);
+//    }
     public void saveImage(Image image) {
         imageRepository.save(image);
     }
+
+    public Image getImageById(Integer imageId) {
+        return imageRepository.getReferenceById(imageId);
+    }
+
+
 }

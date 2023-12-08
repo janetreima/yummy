@@ -1,4 +1,4 @@
-package ee.valiit.yummy.business.recipe.dto;
+package ee.valiit.yummy.business.allergen.dto;
 
 import lombok.Data;
 

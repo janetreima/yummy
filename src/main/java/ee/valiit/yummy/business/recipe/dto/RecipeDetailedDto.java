@@ -1,5 +1,6 @@
 package ee.valiit.yummy.business.recipe.dto;
 
+import ee.valiit.yummy.business.allergen.dto.AllergenDto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
