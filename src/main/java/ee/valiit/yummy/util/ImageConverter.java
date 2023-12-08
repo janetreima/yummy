@@ -1,9 +1,10 @@
 package ee.valiit.yummy.util;
 
 import ee.valiit.yummy.domain.image.Image;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
-
+@Component
 public class ImageConverter {
 
     public static Image stringToImage(String imageData) {
@@ -21,6 +22,7 @@ public class ImageConverter {
         }
         return imageData.getBytes(StandardCharsets.UTF_8);
     }
+
     public static String byteArrayToString(byte[] bytes) {
         if (bytes == null) {
             return "";

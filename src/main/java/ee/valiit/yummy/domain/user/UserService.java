@@ -21,5 +21,8 @@ public class UserService {
         return userRepository.save(user);    // metod sohranjaet v DB
 
     }
+
+    public User getUserById(Integer userId) {
+        return userRepository.getReferenceById(userId);
+    }
 }
-  //TOLKO UserService obwaetsja s userRepository !!!!!!

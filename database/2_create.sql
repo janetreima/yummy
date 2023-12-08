@@ -78,10 +78,11 @@ CREATE TABLE recipe_allergen
 -- Table: recipe_ingredient
 CREATE TABLE recipe_ingredient
 (
-    id              serial NOT NULL,
-    recipe_id       int    NOT NULL,
-    ingredient_id   int    NOT NULL,
-    measure_unit_id int    NOT NULL,
+    id              serial  NOT NULL,
+    recipe_id       int     NOT NULL,
+    ingredient_id   int     NOT NULL,
+    measure_unit_id int     NOT NULL,
+    quantity        decimal NOT NULL,
     CONSTRAINT recipe_ingredient_pk PRIMARY KEY (id)
 );
 
