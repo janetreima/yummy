@@ -1,6 +1,7 @@
 package ee.valiit.yummy.domain.recipe;
 
 import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
+import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -26,4 +27,14 @@ public interface RecipeMapper {
     static String byteArrayToString(byte[] bytes) {
         return ImageConverter.byteArrayToString(bytes);
     }
+
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(source = "recipeName", target = "name")
+    @Mapping(source = "courseId", target = "course.id")
+    @Mapping(source = "timeMinute", target = "timeMinute")
+    @Mapping(source = "description", target = "description")
+//    @Mapping(source = "imageData", target = "image.data", qualifiedByName = "stringToByteArray")
+    Recipe partialUpdate(@MappingTarget Recipe recipe, RecipeDetailedDto recipeDetailedDto);
+
 }
