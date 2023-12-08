@@ -4,7 +4,7 @@ import ee.valiit.yummy.business.signup.dto.UserInfoDto;
 import ee.valiit.yummy.domain.profile.Profile;
 import ee.valiit.yummy.domain.profile.ProfileMapper;
 import ee.valiit.yummy.domain.profile.ProfileService;
-import ee.valiit.yummy.domain.role.Role;
+import ee.valiit.yummy.domain.user.role.Role;
 import ee.valiit.yummy.domain.user.User;
 import ee.valiit.yummy.domain.user.UserMapper;
 import ee.valiit.yummy.domain.user.UserService;
