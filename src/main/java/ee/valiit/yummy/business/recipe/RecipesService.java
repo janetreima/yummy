@@ -5,16 +5,23 @@ import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
 import ee.valiit.yummy.business.recipe.dto.RecipeDetailedResponseDto;
 import ee.valiit.yummy.business.recipeallergen.RecipeAllergenDto;
 import ee.valiit.yummy.business.recipeingredient.RecipeIngredientDto;
+import ee.valiit.yummy.domain.image.Image;
+import ee.valiit.yummy.domain.image.ImageService;
 import ee.valiit.yummy.domain.recipe.Recipe;
 import ee.valiit.yummy.domain.recipe.RecipeMapper;
 import ee.valiit.yummy.domain.recipe.RecipeService;
 import ee.valiit.yummy.domain.recipe.allergen.AllergenService;
+import ee.valiit.yummy.domain.recipe.course.Course;
+import ee.valiit.yummy.domain.recipe.course.CourseService;
 import ee.valiit.yummy.domain.recipe.recipeallergen.RecipeAllergen;
 import ee.valiit.yummy.domain.recipe.recipeallergen.RecipeAllergenMapper;
 import ee.valiit.yummy.domain.recipe.recipeallergen.RecipeAllergenService;
 import ee.valiit.yummy.domain.recipe.recipeingredient.RecipeIngredient;
 import ee.valiit.yummy.domain.recipe.recipeingredient.RecipeIngredientMapper;
 import ee.valiit.yummy.domain.recipe.recipeingredient.RecipeIngredientService;
+import ee.valiit.yummy.domain.user.User;
+import ee.valiit.yummy.domain.user.UserService;
+import ee.valiit.yummy.util.ImageConverter;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +37,15 @@ public class RecipesService {
     private AllergenService allergenService;
 
     @Resource
+    private ImageService imageService;
+
+    @Resource
+    private CourseService courseService;
+
+    @Resource
+    private UserService userService;
+
+    @Resource
     private RecipeAllergenService recipeAllergenService;
 
     @Resource
@@ -43,6 +59,9 @@ public class RecipesService {
 
     @Resource
     private RecipeIngredientMapper recipeIngredientMapper;
+
+    @Resource
+    private ImageConverter imageConverter;
 
     public List<RecipeBasicDto> getAllRecipes() {
         List<Recipe> recipes = recipeService.getAllRecipes();
@@ -69,9 +88,21 @@ public class RecipesService {
         recipeDetailedResponseDto.setAllergenInfos(recipeAllergenDtos);
     }
 
-    public Recipe addRecipe(RecipeDetailedDto recipeBasicDto) {
-//        Recipe recipe = recipeMapper.toRecipe(recipeBasicDto);
-        return null;
+    public void addRecipe(Integer userId, RecipeDetailedDto recipeDetailedDto) {
+        Recipe recipe = recipeMapper.toRecipe(recipeDetailedDto);
+
+        Image image = ImageConverter.stringToImage(recipeDetailedDto.getImageData());
+        imageService.saveImage(image);
+        recipe.setImage(image);
+
+        Course course = courseService.findCourseBy(recipeDetailedDto.getCourseId());
+        recipe.setCourse(course);
+
+        User user = userService.getUserBy(userId);
+        recipe.setUser(user);
+
+        recipeService.saveRecipe(recipe);
+
     }
 }
 

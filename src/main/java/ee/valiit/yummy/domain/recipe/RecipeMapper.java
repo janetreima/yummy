@@ -1,5 +1,6 @@
 package ee.valiit.yummy.domain.recipe;
 
+import ee.valiit.yummy.business.Status;
 import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
 import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
 import ee.valiit.yummy.business.recipe.dto.RecipeDetailedResponseDto;
@@ -9,7 +10,7 @@ import java.util.List;
 import ee.valiit.yummy.util.ImageConverter;
 
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, imports = {Status.class})
 public interface RecipeMapper {
 
     @Mapping(source = "id", target = "recipeId")
@@ -34,7 +35,11 @@ public interface RecipeMapper {
     @Mapping(source = "image.data", target = "imageData", qualifiedByName = "byteArrayToString")
     RecipeDetailedResponseDto toRecipeDetailedResponseDto(Recipe recipe);
 
-    Recipe toRecipe (RecipeBasicDto recipeBasicDto);
+    @Mapping(source = "recipeName", target = "name")
+    @Mapping(source = "timeMinute", target = "timeMinute")
+    @Mapping(source = "description", target = "description")
+    @Mapping(expression = "java(Status.ACTIVE)", target = "status")
+    Recipe toRecipe (RecipeDetailedDto recipeBasicDto);
 
 
     List<RecipeBasicDto> toRecipeBasicDto(List<Recipe> recipes);

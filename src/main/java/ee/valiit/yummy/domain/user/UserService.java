@@ -16,4 +16,8 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findUserBy(username, password);
         return ValidationService.getValidUser(optionalUser);
     }
+
+    public User getUserBy(Integer userId) {
+        return userRepository.getReferenceById(userId);
+    }
 }

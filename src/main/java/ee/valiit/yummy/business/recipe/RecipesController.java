@@ -29,7 +29,7 @@ public class RecipesController {
     @PostMapping("/recipe")
     @Operation(summary = "lisab uue retsepti")
     public void addRecipe(@RequestParam Integer userId, @RequestBody RecipeDetailedDto recipeDetailedDto) {
-        recipesService.addRecipe(recipeDetailedDto);
+        recipesService.addRecipe(userId, recipeDetailedDto);
     }
 
     @PutMapping("/recipe")
