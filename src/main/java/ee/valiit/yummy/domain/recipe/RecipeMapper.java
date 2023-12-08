@@ -44,6 +44,15 @@ public interface RecipeMapper {
 
     List<RecipeBasicDto> toRecipeBasicDto(List<Recipe> recipes);
 
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(source = "recipeName", target = "name")
+    @Mapping(source = "courseId", target = "course.id")
+    @Mapping(source = "timeMinute", target = "timeMinute")
+    @Mapping(source = "description", target = "description")
+    Recipe partialUpdate(@MappingTarget Recipe recipe, RecipeDetailedDto recipeDetailedDto);
+
+
     @Named("byteArrayToString")
     static String byteArrayToString(byte[] bytes) {
         return ImageConverter.byteArrayToString(bytes);

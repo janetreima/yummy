@@ -10,7 +10,9 @@ public class RecipeService {
 
     @Resource
     private RecipeRepository recipeRepository;
-    @Resource RecipeMapper recipeMapper;
+
+    @Resource
+    private RecipeMapper recipeMapper;
 
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
@@ -22,6 +24,10 @@ public class RecipeService {
 
     public void saveRecipe(Recipe recipe) {
         recipeRepository.save(recipe);
+    }
+
+    public Recipe getRecipeById(Integer recipeId) {
+        return recipeRepository.getReferenceById(recipeId);
     }
 
 }
