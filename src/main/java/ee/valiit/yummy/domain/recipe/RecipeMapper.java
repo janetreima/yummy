@@ -48,4 +48,9 @@ public interface RecipeMapper {
     static String byteArrayToString(byte[] bytes) {
         return ImageConverter.byteArrayToString(bytes);
     }
+
+    @Named("stringToByteArray")
+    static byte[] stringToByteArray(String string){
+        return ImageConverter.stringToByteArray(string);
+    }
 }

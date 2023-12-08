@@ -90,20 +90,18 @@ public class RecipesService {
 
     public void addRecipe(Integer userId, RecipeDetailedDto recipeDetailedDto) {
         Recipe recipe = recipeMapper.toRecipe(recipeDetailedDto);
-
         Image image = ImageConverter.stringToImage(recipeDetailedDto.getImageData());
         imageService.saveImage(image);
         recipe.setImage(image);
-
-        Course course = courseService.findCourseBy(recipeDetailedDto.getCourseId());
-        recipe.setCourse(course);
-
-        User user = userService.getUserBy(userId);
+        User user = userService.getUserById(userId);
         recipe.setUser(user);
-
+        Course course = courseService.getCourseBy(recipeDetailedDto.getCourseId());
+        recipe.setCourse(course);
         recipeService.saveRecipe(recipe);
 
     }
+
+
 }
 
 
