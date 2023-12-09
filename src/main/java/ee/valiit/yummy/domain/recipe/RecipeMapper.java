@@ -29,6 +29,8 @@ public interface RecipeMapper {
     RecipeDetailedDto toRecipeDetailedDto(Recipe recipe);
 
     @Mapping(source = "name", target = "recipeName")
+    @Mapping(source = "user.id", target = "authorUserId")
+    @Mapping(source = "user.username", target = "authorUsername")
     @Mapping(source = "course.id", target = "courseId")
     @Mapping(source = "timeMinute", target = "timeMinute")
     @Mapping(source = "description", target = "description")

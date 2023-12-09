@@ -1,5 +1,6 @@
 package ee.valiit.yummy.business.allergen;
 
+import ee.valiit.yummy.business.allergen.dto.AllergenDto;
 import ee.valiit.yummy.domain.recipe.allergen.Allergen;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
@@ -16,7 +17,7 @@ public class AllergensController {
 
     @GetMapping("/recipe/allergens")
     @Operation(summary = "Tagastab kõik allergeenide valikud")
-    public List<Allergen> getAllAllergens() {
+    public List<AllergenDto> getAllAllergens() {
         return allergensService.getAllAllergens();
     }
 }

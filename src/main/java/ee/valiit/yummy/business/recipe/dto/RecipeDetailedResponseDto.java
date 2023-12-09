@@ -19,8 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 public class RecipeDetailedResponseDto implements Serializable {
 
-    @NotNull
-    @Size(max = 255)
+    private Integer authorUserId;
+    private String authorUsername;
     private String recipeName;
     private Integer courseId;
     private List<RecipeAllergenDto> allergenInfos;
