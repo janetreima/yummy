@@ -12,6 +12,7 @@ public interface AllergenMapper {
 
     @Mapping(source = "id", target = "allergenId")
     @Mapping(source = "name", target = "allergenName")
+    @Mapping(constant = "false", target = "isAvailable")
     AllergenDto toDto(Allergen allergen);
 
     List<AllergenDto> toAllergenDtos(List<Allergen> allergens);
