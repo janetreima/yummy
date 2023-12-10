@@ -39,7 +39,5 @@ public class RecipesController {
 
 
         recipesService.editRecipe(recipeId, recipeDetailedDto);
-        // todo evgeni
-
     }
 }

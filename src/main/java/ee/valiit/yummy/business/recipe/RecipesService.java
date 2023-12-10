@@ -71,7 +71,7 @@ public class RecipesService {
     }
 
     public RecipeDetailedResponseDto getRecipe(Integer recipeId) {
-        Recipe recipe = recipeService.getRecipe(recipeId);
+        Recipe recipe = recipeService.getRecipeById(recipeId).get();
         RecipeDetailedResponseDto recipeDetailedResponseDto = recipeMapper.toRecipeDetailedResponseDto(recipe);
         getAndSetRecipeAllergens(recipeId, recipeDetailedResponseDto);
         getAndSetRecipeIngredients(recipeId, recipeDetailedResponseDto);
@@ -105,7 +105,7 @@ public class RecipesService {
 
     public void editRecipe(Integer recipeId, RecipeDetailedDto recipeDetailedDto) {
 
-        Recipe recipe = recipeService.getRecipeById(recipeId);
+        Recipe recipe = recipeService.getRecipeById(recipeId).get();
         recipeMapper.partialUpdate(recipe, recipeDetailedDto);
         handleCourseUpdate(recipe, recipeDetailedDto);
         handleImage(recipe, recipeDetailedDto);
@@ -114,18 +114,18 @@ public class RecipesService {
 
     private void handleCourseUpdate(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
         if (isCourseUpdateRequired(recipeDetailedDto, recipe)) {
-            Course course = courseService.getCourseById(recipeDetailedDto.getCourseId());
+            Course course = courseService.getCourseBy(recipeDetailedDto.getCourseId());
             recipe.setCourse(course);
         }
     }
 
     private static boolean isCourseUpdateRequired(RecipeDetailedDto recipeDetailedDto, Recipe recipe) {
-        return !haveSameCourseIds(recipe, recipeDetailedDto);
+        return !haveSameCourseIds(recipe, recipeDetailedDto);  //   kui id erinevad siis on flase
     }
 
     private static boolean haveSameCourseIds(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        return recipe.getCourse().getId().equals(recipeDetailedDto.getCourseId());
-    }
+        return recipe.getCourse().getId().equals(recipeDetailedDto.getCourseId()); // kui true siis Ids on sama
+    }                  // id = 1                               id = 1
 
     private void handleImage(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
         handleImageUpdate(recipe, recipeDetailedDto);
