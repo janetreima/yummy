@@ -19,4 +19,5 @@ public class CoursesController {
     public List<CourseDto> getAllCourses() {
         return coursesService.getAllCourses();
     }
+
 }

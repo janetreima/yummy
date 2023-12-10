@@ -27,6 +27,12 @@ public class RecipesController {
         return recipesService.getRecipe(recipeId);
     }
 
+    @GetMapping("/recipe/filtered")
+    @Operation(summary = "leiab retseptid filtri järgi")
+    public List<RecipeBasicDto> getFilteredRecipes(@RequestParam Integer courseId) {
+        return recipesService.getFilteredRecipes(courseId);
+    }
+
     @PostMapping("/recipe")
     @Operation(summary = "lisab uue retsepti")
     public void addRecipe(@RequestParam Integer userId, @RequestBody RecipeDetailedDto recipeDetailedDto) {

@@ -44,7 +44,7 @@ public interface RecipeMapper {
     Recipe toRecipe (RecipeDetailedDto recipeBasicDto);
 
 
-    List<RecipeBasicDto> toRecipeBasicDto(List<Recipe> recipes);
+    List<RecipeBasicDto> toRecipeBasicDtos(List<Recipe> recipes);
 
     @Named("byteArrayToString")
     static String byteArrayToString(byte[] bytes) {
