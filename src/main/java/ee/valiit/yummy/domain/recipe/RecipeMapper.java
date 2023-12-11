@@ -47,7 +47,6 @@ public interface RecipeMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(source = "recipeName", target = "name")
-//    @Mapping(source = "courseId", target = "course.id")    Siin oli viga
     @Mapping(source = "timeMinute", target = "timeMinute")
     @Mapping(source = "description", target = "description")
     Recipe partialUpdate(@MappingTarget Recipe recipe, RecipeDetailedDto recipeDetailedDto);
