@@ -1,0 +1,26 @@
+{
+  "allergenInfos": [
+    {
+      "allergenId": 1,
+      "allergenName": "gluteenivaba",
+      "isAvailable": true
+    },
+    {
+      "allergenId": 2,
+      "allergenName": "laktoosivaba",
+      "isAvailable": false
+    }
+  ],
+  "courseInfos": [
+    {
+      "courseId": 1,
+      "courseName": "pearoog",
+      "isAvailable": true
+    },
+    {
+      "courseId": 3,
+      "courseName": "dessert",
+      "isAvailable": false
+    }
+  ]
+}

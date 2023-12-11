@@ -1,5 +1,6 @@
 package ee.valiit.yummy.business.recipe;
 
+import ee.valiit.yummy.business.recipe.dto.FilteredRecipesRequest;
 import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
 import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +19,12 @@ public class RecipesController {
     @Operation(summary = "leiab kõik retseptid")
     public List<RecipeBasicDto> getAllRecipes() {
         return recipesService.getAllRecipes();
+    }
+
+    @PostMapping("/recipes/filtered")
+    @Operation(summary = "leiab retseptid filtri järgi")
+    public List<RecipeBasicDto> getFilteredRecipes(@RequestBody FilteredRecipesRequest filteredRecipesRequest) {
+        return recipesService.getFilteredRecipes(filteredRecipesRequest);
     }
 
     @GetMapping("/recipe")
