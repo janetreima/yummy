@@ -23,6 +23,7 @@ import ee.valiit.yummy.domain.user.UserService;
 import ee.valiit.yummy.util.ImageConverter;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import java.util.Arrays;
 
 import java.util.List;
 
@@ -105,7 +106,78 @@ public class RecipesService {
         return recipeMapper.toRecipeBasicDtos(recipes);
 
     }
+
+    public void editRecipe(Integer recipeId, RecipeDetailedDto recipeDetailedDto) {
+
+        Recipe recipe = recipeService.getRecipeById(recipeId).get();
+        recipeMapper.partialUpdate(recipe, recipeDetailedDto);
+        handleCourseUpdate(recipe, recipeDetailedDto);
+        handleImage(recipe, recipeDetailedDto);
+        handleNewImage(recipe, recipeDetailedDto);
     }
+
+    private void handleCourseUpdate(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
+        if (isCourseUpdateRequired(recipeDetailedDto, recipe)) {
+            Course course = courseService.getCourseBy(recipeDetailedDto.getCourseId());
+            recipe.setCourse(course);
+        }
+    }
+
+    private static boolean isCourseUpdateRequired(RecipeDetailedDto recipeDetailedDto, Recipe recipe) {
+        return !haveSameCourseIds(recipe, recipeDetailedDto);  //   kui id erinevad siis on flase
+    }
+
+    private static boolean haveSameCourseIds(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
+        return recipe.getCourse().getId().equals(recipeDetailedDto.getCourseId()); // kui true siis Ids on sama
+    }                  // id = 1                               id = 1
+
+    private void handleImage(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
+        handleImageUpdate(recipe, recipeDetailedDto);
+        handleNewImage(recipe, recipeDetailedDto);
+
+    }
+
+    private void handleImageUpdate(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
+        if (isImageUpdateRequired(recipe, recipeDetailedDto)) {
+            byte[] imageAsByte = ImageConverter.stringToByteArray(recipeDetailedDto.getImageData());
+            Image image = recipe.getImage();
+            image.setData(imageAsByte);
+            imageService.saveImage(image);
+        }
+    }
+
+    private static boolean isImageUpdateRequired(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
+        return recipe.getImage() != null && !haveSameImageData(recipe, recipeDetailedDto);
+    }
+
+    private static boolean haveSameImageData(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
+        return Arrays.equals(recipe.getImage().getData(), ImageConverter.stringToByteArray(recipeDetailedDto.getImageData()));
+    }
+
+    private void handleNewImage(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
+        if (isNewImageRequired(recipe, recipeDetailedDto)) {
+            Image image = ImageConverter.stringToImage(recipeDetailedDto.getImageData());
+            imageService.saveImage(image);
+        }
+    }
+
+    private static boolean isNewImageRequired(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
+        return !imageDataExistsMethodOne(recipe.getImage()) && imageDataExistsMethodTwo(recipeDetailedDto.getImageData());
+    }
+
+
+    private static boolean imageDataExistsMethodOne(Image image) {
+        if (image == null) {
+            return false;
+        }
+        return image.getData() != null && image.getData().length > 0;
+    }
+
+    private static boolean imageDataExistsMethodTwo(String imageData) {
+        return imageData != null && !imageData.isEmpty();
+    }
+
+}
 
 //    public List<RecipeBasicDto> getFilteredRecipes(FilteredRecipesRequest filteredRecipesRequest) {
 //        List<Integer> courseIds = getCourseIds(filteredRecipesRequest.getCourseInfos());

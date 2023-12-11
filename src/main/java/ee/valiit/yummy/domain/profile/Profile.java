@@ -1,4 +1,4 @@
-package ee.valiit.yummy.domain.user.profile;
+package ee.valiit.yummy.domain.profile;
 
 import ee.valiit.yummy.domain.image.Image;
 import ee.valiit.yummy.domain.user.User;
@@ -32,4 +32,13 @@ public class Profile {
     @JoinColumn(name = "image_id")
     private Image image;
 
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", user=" + user +
+                ", image=" + image +
+                '}';
+    }
 }

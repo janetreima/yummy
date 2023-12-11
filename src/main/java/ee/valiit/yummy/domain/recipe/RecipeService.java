@@ -4,13 +4,16 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeService {
 
     @Resource
     private RecipeRepository recipeRepository;
-    @Resource RecipeMapper recipeMapper;
+
+    @Resource
+    private RecipeMapper recipeMapper;
 
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
@@ -26,5 +29,9 @@ public class RecipeService {
 
     public List<Recipe> getFilteredRecipes(Integer courseId) {
         return recipeRepository.findRecipesByCourseId(courseId);
+    }
+
+    public Optional<Recipe> getRecipeById(Integer recipeId) {
+        return recipeRepository.findById(recipeId);
     }
 }

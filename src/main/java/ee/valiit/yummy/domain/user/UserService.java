@@ -17,6 +17,11 @@ public class UserService {
         return ValidationService.getValidUser(optionalUser);
     }
 
+    public User saveUser(User user) {
+        return userRepository.save(user);    // metod sohranjaet v DB
+
+    }
+
     public User getUserById(Integer userId) {
         return userRepository.getReferenceById(userId);
     }

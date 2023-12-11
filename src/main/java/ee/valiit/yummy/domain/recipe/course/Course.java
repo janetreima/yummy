@@ -23,4 +23,11 @@ public class Course {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

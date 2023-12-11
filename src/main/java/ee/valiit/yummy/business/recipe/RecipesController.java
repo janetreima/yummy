@@ -41,8 +41,8 @@ public class RecipesController {
     @PutMapping("/recipe")
     @Operation(summary = "muudab retsepti")
     public void editRecipe(@RequestParam Integer recipeId, @RequestBody RecipeDetailedDto recipeDetailedDto) {
-        // todo evgeni
+
+
+        recipesService.editRecipe(recipeId, recipeDetailedDto);
     }
-
-
 }

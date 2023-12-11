@@ -1,9 +1,10 @@
 package ee.valiit.yummy.domain.image;
-
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.*;
+import java.util.Arrays;
+
 
 @Getter
 @Setter
@@ -19,4 +20,13 @@ public class Image {
     @Column(name = "data", nullable = false)
     private byte[] data;
 
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id=" + id +
+                ", data=" + Arrays.toString(data) +
+                '}';
+    }
 }
+
+
