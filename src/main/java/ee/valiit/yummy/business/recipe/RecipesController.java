@@ -41,8 +41,12 @@ public class RecipesController {
     @PutMapping("/recipe")
     @Operation(summary = "muudab retsepti")
     public void editRecipe(@RequestParam Integer recipeId, @RequestBody RecipeDetailedDto recipeDetailedDto) {
-
-
         recipesService.editRecipe(recipeId, recipeDetailedDto);
+    }
+
+    @DeleteMapping("/recipe")
+    @Operation(summary = "kustutab retsepti")
+    public void deleteRecipe(@RequestParam Integer recipeId) {
+        recipesService.deleteRecipe(recipeId);
     }
 }

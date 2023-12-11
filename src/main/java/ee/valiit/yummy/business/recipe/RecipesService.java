@@ -1,5 +1,6 @@
 package ee.valiit.yummy.business.recipe;
 
+import ee.valiit.yummy.business.Status;
 import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
 import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
 import ee.valiit.yummy.business.recipeallergen.RecipeAllergenDto;
@@ -23,8 +24,8 @@ import ee.valiit.yummy.domain.user.UserService;
 import ee.valiit.yummy.util.ImageConverter;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-import java.util.Arrays;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -177,46 +178,13 @@ public class RecipesService {
         return imageData != null && !imageData.isEmpty();
     }
 
+    public void deleteRecipe(Integer recipeId) {
+
+        Recipe recipe = recipeService.getRecipeById(recipeId).get();
+        recipe.setStatus(Status.DELETED);
+//        recipe.setStatus(Status.ACTIVE);       Kui on vaja tagastada ACTIVE status
+        recipeService.saveRecipe(recipe);
+    }
+
 }
-
-//    public List<RecipeBasicDto> getFilteredRecipes(FilteredRecipesRequest filteredRecipesRequest) {
-//        List<Integer> courseIds = getCourseIds(filteredRecipesRequest.getCourseInfos());
-//        List<Integer> allergenIds = getAllergenIds(filteredRecipesRequest.getAllergenInfos());
-//        List<Recipe> courseFilteredRecipes = recipeService.getRecipesBy(courseIds);
-//        List<Recipe> allergenFilteredRecipes = getAllergenFilteredRecipes(courseFilteredRecipes, allergenIds);
-//        return recipeMapper.toRecipeBasicDtos(allergenFilteredRecipes);
-//    }
-//
-//    private List<Recipe> getAllergenFilteredRecipes(List<Recipe> courseFilteredRecipes, List<Integer> allergenIds) {
-//        List<Recipe> allergenFilteredRecipes = new ArrayList<>();
-//        for (Recipe courseFilteredRecipe : courseFilteredRecipes) {
-//            if (recipeAllergenService.recipeExistsBy(courseFilteredRecipe.getId(), allergenIds)) {
-//                allergenFilteredRecipes.add(courseFilteredRecipe);
-//            }
-//        }
-//        return allergenFilteredRecipes;
-//    }
-//
-//    private List<Integer> getAllergenIds(List<AllergenDto> allergenInfos) {
-//        List<Integer> allergenIds = new ArrayList<>();
-//        for (AllergenDto allergenInfo : allergenInfos) {
-//            if (allergenInfo.getIsAvailable()) {
-//                allergenIds.add(allergenInfo.getAllergenId());
-//            }
-//        }
-//        return allergenIds;
-//    }
-//
-//    private static List<Integer> getCourseIds(List<CourseDto> courseInfos) {
-//        List<Integer> courseIds = new ArrayList<>();
-//        for (CourseDto courseInfo : courseInfos) {
-//            if (courseInfo.getIsAvailable()) {
-//                courseIds.add(courseInfo.getCourseId());
-//            }
-//        }
-//        return courseIds;
-//    }
-
-
-
 
