@@ -3,7 +3,6 @@ package ee.valiit.yummy.domain.recipe;
 import ee.valiit.yummy.business.Status;
 import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
 import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
-import ee.valiit.yummy.business.recipe.dto.RecipeDetailedResponseDto;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -21,12 +20,6 @@ public interface RecipeMapper {
     @Mapping(source = "timeMinute", target = "timeMinute")
     RecipeBasicDto toRecipeBasicDto(Recipe recipe);
 
-    @Mapping(source = "name", target = "recipeName")
-    @Mapping(source = "course.id", target = "courseId")
-    @Mapping(source = "timeMinute", target = "timeMinute")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "image.data", target = "imageData", qualifiedByName = "byteArrayToString")
-    RecipeDetailedDto toRecipeDetailedDto(Recipe recipe);
 
     @Mapping(source = "name", target = "recipeName")
     @Mapping(source = "user.id", target = "authorUserId")
@@ -35,7 +28,7 @@ public interface RecipeMapper {
     @Mapping(source = "timeMinute", target = "timeMinute")
     @Mapping(source = "description", target = "description")
     @Mapping(source = "image.data", target = "imageData", qualifiedByName = "byteArrayToString")
-    RecipeDetailedResponseDto toRecipeDetailedResponseDto(Recipe recipe);
+    RecipeDetailedDto toRecipeDetailedDto(Recipe recipe);
 
     @Mapping(source = "recipeName", target = "name")
     @Mapping(source = "timeMinute", target = "timeMinute")

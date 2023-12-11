@@ -2,7 +2,6 @@ package ee.valiit.yummy.business.recipe;
 
 import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
 import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
-import ee.valiit.yummy.business.recipe.dto.RecipeDetailedResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +22,8 @@ public class RecipesController {
 
     @GetMapping("/recipe")
     @Operation(summary = "leiab ühe retsepti recipeId järgi")
-    public RecipeDetailedResponseDto getRecipe(@RequestParam Integer recipeId) {
-        return recipesService.getRecipe(recipeId);
+    public RecipeDetailedDto getRecipe(@RequestParam Integer recipeId) {
+        return recipesService.getRecipeBy(recipeId);
     }
 
     @GetMapping("/recipe/filtered")
