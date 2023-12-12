@@ -106,11 +106,6 @@ public class RecipesService {
 
     }
 
-    public List<RecipeBasicDto> getFilteredRecipes(Integer courseId) {
-        List<Recipe> recipes = recipeService.getFilteredRecipes(courseId);
-        return recipeMapper.toRecipeBasicDtos(recipes);
-
-    }
 
     public void editRecipe(Integer recipeId, RecipeDetailedDto recipeDetailedDto) {
 
