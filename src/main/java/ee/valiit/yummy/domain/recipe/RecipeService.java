@@ -12,9 +12,6 @@ public class RecipeService {
     @Resource
     private RecipeRepository recipeRepository;
 
-    @Resource
-    private RecipeMapper recipeMapper;
-
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
@@ -27,8 +24,12 @@ public class RecipeService {
         recipeRepository.save(recipe);
     }
 
-    public List<Recipe> getFilteredRecipes(Integer courseId) {
-        return recipeRepository.findRecipesByCourseId(courseId);
+    public List<Recipe> getUserRecipes(Integer userId) {
+        return recipeRepository.findRecipesByUserId(userId);
+    }
+
+    public List<Recipe> getRecipesBy(List<Integer> courseIds) {
+        return recipeRepository.findRecipesBy(courseIds);
     }
 
     public Optional<Recipe> getRecipeById(Integer recipeId) {

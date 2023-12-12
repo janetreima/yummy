@@ -1,6 +1,6 @@
 package ee.valiit.yummy.business.recipe.course;
 
-import ee.valiit.yummy.domain.recipe.course.CourseService;
+import ee.valiit.yummy.business.recipe.dto.CourseInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class CoursesController {
 
     @GetMapping("recipe/courses")
     @Operation(summary = "Tagastab kõik käigud")
-    public List<CourseDto> getAllCourses() {
+    public List<CourseInfo> getAllCourses() {
         return coursesService.getAllCourses();
     }
 

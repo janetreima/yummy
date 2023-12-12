@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class AllergenDto {
+public class AllergenInfo {
     private Integer allergenId;
     private String allergenName;
     @NotNull
