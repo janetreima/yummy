@@ -15,4 +15,8 @@ public class IngredientService {
     public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
     }
+
+    public void saveIngredient(Ingredient ingredient) {
+        ingredientRepository.save(ingredient);
+    }
 }

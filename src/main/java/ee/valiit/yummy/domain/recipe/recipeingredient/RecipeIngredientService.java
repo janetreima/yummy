@@ -14,4 +14,8 @@ public class RecipeIngredientService {
     public List<RecipeIngredient> getRecipeIngredientsBy(Integer recipeId) {
         return recipeIngredientRepository.getRecipeIngredientsBy(recipeId);
     }
+
+    public void saveRecipeIngredient(RecipeIngredient recipeIngredient) {
+        recipeIngredientRepository.save(recipeIngredient);
+    }
 }

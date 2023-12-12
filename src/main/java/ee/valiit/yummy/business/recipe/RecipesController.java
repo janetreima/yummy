@@ -3,6 +3,7 @@ package ee.valiit.yummy.business.recipe;
 import ee.valiit.yummy.business.recipe.dto.FilteredRecipesRequest;
 import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
 import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
+import ee.valiit.yummy.business.recipeingredient.RecipeIngredientRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
