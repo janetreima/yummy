@@ -106,8 +106,8 @@ public class RecipesService {
 
     }
 
-    public List<RecipeBasicDto> getFilteredRecipes(Integer courseId) {
-        List<Recipe> recipes = recipeService.getFilteredRecipes(courseId);
+    public List<RecipeBasicDto> getUserRecipes(Integer userId) {
+        List<Recipe> recipes = recipeService.getUserRecipes(userId);
         return recipeMapper.toRecipeBasicDtos(recipes);
 
     }
@@ -183,7 +183,7 @@ public class RecipesService {
     }
 
 
-    public List<RecipeBasicDto> getFilteredRecipes(FilteredRecipesRequest filteredRecipesRequest) {
+    public List<RecipeBasicDto> getUserRecipes(FilteredRecipesRequest filteredRecipesRequest) {
         List<Recipe> courseFilteredRecipes = handleCourseFilteredRecipes(filteredRecipesRequest);
         return handleAllergenFilteredRecipes(filteredRecipesRequest, courseFilteredRecipes);
     }

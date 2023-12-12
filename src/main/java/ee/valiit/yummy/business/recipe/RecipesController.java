@@ -24,7 +24,7 @@ public class RecipesController {
     @PostMapping("/recipes/filtered")
     @Operation(summary = "leiab retseptid filtri järgi")
     public List<RecipeBasicDto> getFilteredRecipes(@RequestBody FilteredRecipesRequest filteredRecipesRequest) {
-        return recipesService.getFilteredRecipes(filteredRecipesRequest);
+        return recipesService.getUserRecipes(filteredRecipesRequest);
     }
 
     @GetMapping("/recipe")
@@ -33,10 +33,10 @@ public class RecipesController {
         return recipesService.getRecipeBy(recipeId);
     }
 
-    @GetMapping("/recipe/filtered")
-    @Operation(summary = "leiab retseptid filtri järgi")
-    public List<RecipeBasicDto> getFilteredRecipes(@RequestParam Integer courseId) {
-        return recipesService.getFilteredRecipes(courseId);
+    @GetMapping("/recipes/myrecipes")
+    @Operation(summary = "leiab ühe kasutaja kõik retseptid userId järgi")
+    public List<RecipeBasicDto> getFilteredRecipes(@RequestParam Integer userId) {
+        return recipesService.getUserRecipes(userId);
     }
 
     @PostMapping("/recipe")

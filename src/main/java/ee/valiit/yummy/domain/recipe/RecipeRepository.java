@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
-    List<Recipe> findRecipesByCourseId(Integer id);
+    List<Recipe> findRecipesByUserId(Integer id);
 
 
     @Query("select r from Recipe r where r.course.id in :courseIds order by r.name")

@@ -24,8 +24,8 @@ public class RecipeService {
         recipeRepository.save(recipe);
     }
 
-    public List<Recipe> getFilteredRecipes(Integer courseId) {
-        return recipeRepository.findRecipesByCourseId(courseId);
+    public List<Recipe> getUserRecipes(Integer userId) {
+        return recipeRepository.findRecipesByUserId(userId);
     }
 
     public List<Recipe> getRecipesBy(List<Integer> courseIds) {
