@@ -18,4 +18,9 @@ public class RecipeIngredientService {
     public void saveRecipeIngredient(RecipeIngredient recipeIngredient) {
         recipeIngredientRepository.save(recipeIngredient);
     }
+
+    public void deleteRecipeIngredient(Integer ingredientId) {
+        RecipeIngredient recipeIngredient = recipeIngredientRepository.getReferenceById(ingredientId);
+        recipeIngredientRepository.delete(recipeIngredient);
+    }
 }

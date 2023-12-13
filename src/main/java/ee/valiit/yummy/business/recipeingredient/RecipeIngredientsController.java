@@ -25,4 +25,9 @@ public class RecipeIngredientsController {
         recipeIngredientsService.addRecipeIngredient(recipeId, recipeIngredientRequest);
     }
 
+    @DeleteMapping("recipe/ingredient")
+    @Operation(summary = "kustutab retsepti koostisosa")
+    public void deleteRecipeIngredient(@RequestParam Integer ingredientId) {
+        recipeIngredientsService.deleteRecipeIngredient(ingredientId);
+    }
 }

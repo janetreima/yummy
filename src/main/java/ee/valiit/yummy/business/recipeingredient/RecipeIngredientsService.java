@@ -63,5 +63,9 @@ public class RecipeIngredientsService {
 
         recipeIngredientService.saveRecipeIngredient(recipeIngredient);
     }
+
+    public void deleteRecipeIngredient(Integer ingredientId) {
+        recipeIngredientService.deleteRecipeIngredient(ingredientId);
+    }
 }
 
