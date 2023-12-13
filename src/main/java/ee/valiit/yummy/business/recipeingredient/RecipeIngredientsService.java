@@ -51,7 +51,7 @@ public class RecipeIngredientsService {
     public void addRecipeIngredient(Integer recipeId, RecipeIngredientRequest recipeIngredientRequest) {
         RecipeIngredient recipeIngredient = recipeIngredientMapper.toRecipeIngredient(recipeIngredientRequest);
 
-        Recipe recipe = recipeService.getRecipe(recipeId);
+        Recipe recipe = recipeService.getRecipeBy(recipeId);
         recipeIngredient.setRecipe(recipe);
 
         Ingredient ingredient = ingredientMapper.toIngredient(recipeIngredientRequest);

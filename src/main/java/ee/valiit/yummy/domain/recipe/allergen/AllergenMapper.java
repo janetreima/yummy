@@ -6,7 +6,7 @@ import org.mapstruct.*;
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface AllergenMapper {
+public interface  AllergenMapper {
 
     Allergen toEntity(AllergenInfo allergenInfo);
 

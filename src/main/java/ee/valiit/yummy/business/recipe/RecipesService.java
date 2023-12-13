@@ -71,7 +71,7 @@ public class RecipesService {
     }
 
     public RecipeDetailedDto getRecipeBy(Integer recipeId) {
-        Recipe recipe = recipeService.getRecipe(recipeId);
+        Recipe recipe = recipeService.getRecipeBy(recipeId);
         RecipeDetailedDto recipeDetailedDto = recipeMapper.toRecipeDetailedDto(recipe);
         getAndSetRecipeAllergens(recipeId, recipeDetailedDto);
         getAndSetRecipeIngredients(recipeId, recipeDetailedDto);
@@ -106,7 +106,7 @@ public class RecipesService {
 
     public void editRecipe(Integer recipeId, RecipeDetailedDto recipeDetailedDto) {
 
-        Recipe recipe = recipeService.getRecipeById(recipeId).get();
+        Recipe recipe = recipeService.getRecipeBy(recipeId);
         recipeMapper.partialUpdate(recipe, recipeDetailedDto);
         handleCourseUpdate(recipe, recipeDetailedDto);
         handleImage(recipe, recipeDetailedDto);
@@ -176,7 +176,7 @@ public class RecipesService {
 
     public void deleteRecipe(Integer recipeId) {
 
-        Recipe recipe = recipeService.getRecipeById(recipeId).get();
+        Recipe recipe = recipeService.getRecipeBy(recipeId);
         recipe.setStatus(Status.DELETED);
 //        recipe.setStatus(Status.ACTIVE);       Kui on vaja tagastada ACTIVE status
         recipeService.saveRecipe(recipe);

@@ -4,7 +4,6 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RecipeService {
@@ -16,7 +15,7 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    public Recipe getRecipe(Integer recipeId) {
+    public Recipe getRecipeBy(Integer recipeId) {
         return recipeRepository.getReferenceById(recipeId);
     }
 
@@ -32,7 +31,4 @@ public class RecipeService {
         return recipeRepository.findRecipesBy(courseIds);
     }
 
-    public Optional<Recipe> getRecipeById(Integer recipeId) {
-        return recipeRepository.findById(recipeId);
-    }
 }

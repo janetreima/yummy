@@ -12,6 +12,13 @@ public interface RecipeAllergenMapper {
     @Mapping(source = "allergen.name", target = "allergenName")
     RecipeAllergenDto toDto(RecipeAllergen recipeAllergen);
 
+
+    RecipeAllergen toEntity (RecipeAllergenDto recipeAllergenDto);
+
+
+
     List<RecipeAllergenDto> toRecipeAllergenDtos(List<RecipeAllergen> recipeAllergens);
+
+    List<RecipeAllergen> toRecipeAllergens (List<RecipeAllergenDto> recipeAllergenDtos);
 
 }

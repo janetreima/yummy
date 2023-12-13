@@ -1,0 +1,22 @@
+[
+  {
+    "allergenId": 1,
+    "allergenName": "string",
+    "isAvailable": true
+  },
+  {
+    "allergenId": 2,
+    "allergenName": "string",
+    "isAvailable": true
+  },
+  {
+    "allergenId": 3,
+    "allergenName": "string",
+    "isAvailable": false
+  },
+  {
+    "allergenId": 4,
+    "allergenName": "string",
+    "isAvailable": false
+  }
+]
