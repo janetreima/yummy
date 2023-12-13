@@ -1,6 +1,7 @@
 package ee.valiit.yummy.domain.recipe.recipeingredient;
 
 import ee.valiit.yummy.business.recipeingredient.RecipeIngredientDto;
+import ee.valiit.yummy.business.recipeingredient.RecipeIngredientRequest;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -17,5 +18,8 @@ public interface RecipeIngredientMapper {
     RecipeIngredientDto toRecipeIngredientDto(RecipeIngredient recipeIngredient);
 
     List<RecipeIngredientDto> toRecipeIngredientDtos(List<RecipeIngredient> recipeIngredients);
+
+    @Mapping(source = "quantity", target = "quantity")
+    RecipeIngredient toRecipeIngredient(RecipeIngredientRequest recipeIngredientRequest);
 
 }

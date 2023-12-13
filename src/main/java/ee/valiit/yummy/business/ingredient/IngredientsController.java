@@ -14,7 +14,7 @@ public class IngredientsController {
     @Resource
     private IngredientsService ingredientsService;
 
-    @GetMapping("/recipe/ingredients")
+    @GetMapping("/recipe/allingredients")
     @Operation(summary = "tagastab kõik andmebaasis olevad koostisosad")
     public List<Ingredient> getAllIngredients() {
         return ingredientsService.getAllIngredients();
