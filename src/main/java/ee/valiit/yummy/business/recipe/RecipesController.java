@@ -17,9 +17,9 @@ public class RecipesController {
     private RecipesService recipesService;
 
     @GetMapping("/recipes")
-    @Operation(summary = "leiab kõik retseptid")
-    public List<RecipeBasicDto> getAllRecipes() {
-        return recipesService.getAllRecipes();
+    @Operation(summary = "leiab kõik aktiivsed retseptid")
+    public List<RecipeBasicDto> getAllActiveRecipes() {
+        return recipesService.getAllActiveRecipes();
     }
 
     @PostMapping("/recipes/filtered")

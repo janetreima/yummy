@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
+    @Query("select r from Recipe r where r.status = ?1 order by r.id")
+    List<Recipe> findAllActiveRecipes(String status);
     List<Recipe> findRecipesByUserId(Integer id);
 
 

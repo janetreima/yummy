@@ -1,5 +1,6 @@
 package ee.valiit.yummy.domain.recipe;
 
+import ee.valiit.yummy.business.Status;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,9 @@ public class RecipeService {
 
     public Optional<Recipe> getRecipeById(Integer recipeId) {
         return recipeRepository.findById(recipeId);
+    }
+
+    public List<Recipe> getAllActiveRecipes() {
+       return recipeRepository.findAllActiveRecipes(Status.ACTIVE);
     }
 }

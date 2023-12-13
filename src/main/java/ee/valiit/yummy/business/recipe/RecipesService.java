@@ -70,6 +70,11 @@ public class RecipesService {
         return recipeMapper.toRecipeBasicDtos(recipes);
     }
 
+    public List<RecipeBasicDto> getAllActiveRecipes() {
+        List<Recipe> recipes = recipeService.getAllActiveRecipes();
+        return recipeMapper.toRecipeBasicDtos(recipes);
+    }
+
     public RecipeDetailedDto getRecipeBy(Integer recipeId) {
         Recipe recipe = recipeService.getRecipe(recipeId);
         RecipeDetailedDto recipeDetailedDto = recipeMapper.toRecipeDetailedDto(recipe);
@@ -178,7 +183,6 @@ public class RecipesService {
 
         Recipe recipe = recipeService.getRecipeById(recipeId).get();
         recipe.setStatus(Status.DELETED);
-//        recipe.setStatus(Status.ACTIVE);       Kui on vaja tagastada ACTIVE status
         recipeService.saveRecipe(recipe);
     }
 
