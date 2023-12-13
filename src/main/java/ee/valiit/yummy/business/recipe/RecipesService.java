@@ -1,11 +1,8 @@
 package ee.valiit.yummy.business.recipe;
 
 import ee.valiit.yummy.business.allergen.dto.AllergenInfo;
-import ee.valiit.yummy.business.recipe.dto.CourseInfo;
-import ee.valiit.yummy.business.recipe.dto.FilteredRecipesRequest;
+import ee.valiit.yummy.business.recipe.dto.*;
 import ee.valiit.yummy.business.Status;
-import ee.valiit.yummy.business.recipe.dto.RecipeBasicDto;
-import ee.valiit.yummy.business.recipe.dto.RecipeDetailedDto;
 import ee.valiit.yummy.business.recipeallergen.RecipeAllergenDto;
 import ee.valiit.yummy.business.recipeingredient.RecipeIngredientDto;
 import ee.valiit.yummy.domain.image.Image;
@@ -93,7 +90,7 @@ public class RecipesService {
         recipeDetailedDto.setAllergenInfos(recipeAllergenDtos);
     }
 
-    public void addRecipe(Integer userId, RecipeDetailedDto recipeDetailedDto) {
+    public RecipeIdInfo addRecipe(Integer userId, RecipeDetailedDto recipeDetailedDto) {
         Recipe recipe = recipeMapper.toRecipe(recipeDetailedDto);
         Image image = ImageConverter.stringToImage(recipeDetailedDto.getImageData());
         imageService.saveImage(image);
@@ -103,7 +100,7 @@ public class RecipesService {
         Course course = courseService.getCourseBy(recipeDetailedDto.getCourseId());
         recipe.setCourse(course);
         recipeService.saveRecipe(recipe);
-
+        return new RecipeIdInfo(recipe.getId());
     }
 
 
@@ -192,7 +189,7 @@ public class RecipesService {
     }
 
 
-    public List<RecipeBasicDto> getUserRecipes(FilteredRecipesRequest filteredRecipesRequest) {
+    public List<RecipeBasicDto> getFilteredRecipes(FilteredRecipesRequest filteredRecipesRequest) {
         List<Recipe> courseFilteredRecipes = handleCourseFilteredRecipes(filteredRecipesRequest);
         return handleAllergenFilteredRecipes(filteredRecipesRequest, courseFilteredRecipes);
     }
