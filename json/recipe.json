@@ -1,3 +1,28 @@
 {
-  "recipeId": 1
+  "authorUserId": 1,
+  "authorUsername": "jane",
+  "recipeName": "muudetud test ",
+  "courseId": 1,
+  "allergenInfos": [],
+  "timeMinute": 3355,
+  "description": "muudetud",
+  "imageData": "",
+  "ingredientInfos": [
+    {
+      "recipeId": 24,
+      "ingredientId": 50,
+      "ingredientName": "testike",
+      "measureUnitId": 4,
+      "measureUnitName": "tk",
+      "quantity": 2
+    },
+    {
+      "recipeId": 24,
+      "ingredientId": 51,
+      "ingredientName": "test veel",
+      "measureUnitId": 5,
+      "measureUnitName": "tl",
+      "quantity": 5
+    }
+  ]
 }

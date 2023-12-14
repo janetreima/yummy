@@ -111,7 +111,7 @@ public class RecipesService {
 
     public void editRecipe(Integer recipeId, RecipeDetailedDto recipeDetailedDto) {
 
-        Recipe recipe = recipeService.getRecipeById(recipeId).get();
+        Recipe recipe = recipeService.getRecipeById(recipeId);
         recipeMapper.partialUpdate(recipe, recipeDetailedDto);
         handleCourseUpdate(recipe, recipeDetailedDto);
         handleImage(recipe, recipeDetailedDto);
@@ -181,7 +181,7 @@ public class RecipesService {
 
     public void deleteRecipe(Integer recipeId) {
 
-        Recipe recipe = recipeService.getRecipeById(recipeId).get();
+        Recipe recipe = recipeService.getRecipeById(recipeId);
         recipe.setStatus(Status.DELETED);
         recipeService.saveRecipe(recipe);
     }
