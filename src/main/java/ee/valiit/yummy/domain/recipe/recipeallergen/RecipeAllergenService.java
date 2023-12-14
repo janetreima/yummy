@@ -23,4 +23,5 @@ public List<RecipeAllergen> findRecipeAllergensBy(Integer recipeId) {
         }
         return optionalBoolean.get();
     }
+
 }

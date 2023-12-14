@@ -8,11 +8,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "recipe", schema = "project")
+@ToString
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

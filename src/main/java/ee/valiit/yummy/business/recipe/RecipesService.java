@@ -95,76 +95,78 @@ public class RecipesService {
         recipeDetailedDto.setAllergenInfos(recipeAllergenDtos);
     }
 
-    public RecipeIdInfo addRecipe(Integer userId, RecipeDetailedDto recipeDetailedDto) {
-        Recipe recipe = recipeMapper.toRecipe(recipeDetailedDto);
-        Image image = ImageConverter.stringToImage(recipeDetailedDto.getImageData());
+    public RecipeIdInfo addRecipe(Integer userId, RecipeRequest recipeRequest) {
+        Recipe recipe = recipeMapper.toRecipe(recipeRequest);
+        Image image = ImageConverter.stringToImage(recipeRequest.getImageData());
         imageService.saveImage(image);
         recipe.setImage(image);
         User user = userService.getUserById(userId);
         recipe.setUser(user);
-        Course course = courseService.getCourseBy(recipeDetailedDto.getCourseId());
+        Course course = courseService.getCourseBy(recipeRequest.getCourseId());
         recipe.setCourse(course);
         recipeService.saveRecipe(recipe);
         return new RecipeIdInfo(recipe.getId());
     }
 
 
-    public void editRecipe(Integer recipeId, RecipeDetailedDto recipeDetailedDto) {
+    public void editRecipe(Integer recipeId, RecipeRequest recipeRequest) {
 
         Recipe recipe = recipeService.getRecipeById(recipeId);
-        recipeMapper.partialUpdate(recipe, recipeDetailedDto);
-        handleCourseUpdate(recipe, recipeDetailedDto);
-        handleImage(recipe, recipeDetailedDto);
-        handleNewImage(recipe, recipeDetailedDto);
+        recipeMapper.partialUpdate(recipe, recipeRequest);
+        handleCourseUpdate(recipe, recipeRequest.getCourseId());
+        handleImage(recipe, recipeRequest);
+        recipeService.saveRecipe(recipe);
     }
 
-    private void handleCourseUpdate(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        if (isCourseUpdateRequired(recipeDetailedDto, recipe)) {
-            Course course = courseService.getCourseBy(recipeDetailedDto.getCourseId());
+    private void handleCourseUpdate(Recipe recipe, Integer newCourseId) {
+        Integer recipeCourseId = recipe.getCourse().getId();
+        if (isCourseUpdateRequired(newCourseId, recipeCourseId)) {
+            Course course = courseService.getCourseBy(newCourseId);
             recipe.setCourse(course);
         }
     }
 
-    private static boolean isCourseUpdateRequired(RecipeDetailedDto recipeDetailedDto, Recipe recipe) {
-        return !haveSameCourseIds(recipe, recipeDetailedDto);  //   kui id erinevad siis on flase
+    private static boolean isCourseUpdateRequired(Integer newCourseId, Integer recipeCourseId) {
+        return !haveSameCourseIds(recipeCourseId, newCourseId);  //   kui id erinevad siis on flase
     }
 
-    private static boolean haveSameCourseIds(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        return recipe.getCourse().getId().equals(recipeDetailedDto.getCourseId()); // kui true siis Ids on sama
+    private static boolean haveSameCourseIds(Integer recipeCourseId, Integer newCourseId) {
+        return recipeCourseId.equals(newCourseId); // kui true siis Ids on sama
     }                  // id = 1                               id = 1
 
-    private void handleImage(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        handleImageUpdate(recipe, recipeDetailedDto);
-        handleNewImage(recipe, recipeDetailedDto);
+    private void handleImage(Recipe recipe, RecipeRequest recipeRequest) {
+        handleImageUpdate(recipe, recipeRequest);
+        handleNewImage(recipe, recipeRequest);
 
     }
 
-    private void handleImageUpdate(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        if (isImageUpdateRequired(recipe, recipeDetailedDto)) {
-            byte[] imageAsByte = ImageConverter.stringToByteArray(recipeDetailedDto.getImageData());
+    private void handleImageUpdate(Recipe recipe, RecipeRequest recipeRequest) {
+        if (isImageUpdateRequired(recipe, recipeRequest)) {
+            byte[] imageAsByte = ImageConverter.stringToByteArray(recipeRequest.getImageData());
             Image image = recipe.getImage();
             image.setData(imageAsByte);
             imageService.saveImage(image);
         }
     }
 
-    private static boolean isImageUpdateRequired(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        return recipe.getImage() != null && !haveSameImageData(recipe, recipeDetailedDto);
+    private static boolean isImageUpdateRequired(Recipe recipe, RecipeRequest recipeRequest) {
+        return recipe.getImage() != null && !haveSameImageData(recipe, recipeRequest);
     }
 
-    private static boolean haveSameImageData(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        return Arrays.equals(recipe.getImage().getData(), ImageConverter.stringToByteArray(recipeDetailedDto.getImageData()));
+    private static boolean haveSameImageData(Recipe recipe, RecipeRequest recipeRequest) {
+        return Arrays.equals(recipe.getImage().getData(), ImageConverter.stringToByteArray(recipeRequest.getImageData()));
     }
 
-    private void handleNewImage(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        if (isNewImageRequired(recipe, recipeDetailedDto)) {
-            Image image = ImageConverter.stringToImage(recipeDetailedDto.getImageData());
+    private void handleNewImage(Recipe recipe, RecipeRequest recipeRequest) {
+        if (isNewImageRequired(recipe, recipeRequest)) {
+            Image image = ImageConverter.stringToImage(recipeRequest.getImageData());
             imageService.saveImage(image);
+            recipe.setImage(image);
         }
     }
 
-    private static boolean isNewImageRequired(Recipe recipe, RecipeDetailedDto recipeDetailedDto) {
-        return !imageDataExistsMethodOne(recipe.getImage()) && imageDataExistsMethodTwo(recipeDetailedDto.getImageData());
+    private static boolean isNewImageRequired(Recipe recipe, RecipeRequest recipeRequest) {
+        return recipe.getImage() == null && !recipeRequest.getImageData().isEmpty();
     }
 
 
@@ -180,7 +182,6 @@ public class RecipesService {
     }
 
     public void deleteRecipe(Integer recipeId) {
-
         Recipe recipe = recipeService.getRecipeById(recipeId);
         recipe.setStatus(Status.DELETED);
         recipeService.saveRecipe(recipe);
@@ -194,6 +195,7 @@ public class RecipesService {
 
 
     public List<RecipeBasicDto> getFilteredRecipes(FilteredRecipesRequest filteredRecipesRequest) {
+        List<Recipe> activeRecipes = recipeService.getAllActiveRecipes();
         List<Recipe> courseFilteredRecipes = handleCourseFilteredRecipes(filteredRecipesRequest);
         return handleAllergenFilteredRecipes(filteredRecipesRequest, courseFilteredRecipes);
     }
@@ -219,6 +221,12 @@ public class RecipesService {
         }
         return courseFilteredRecipes;
     }
+
+//private List<Recipe> getActiveFilteredRecipes(List<Recipe> allergenFilteredRecipes, List<Recipe> activeRecipes) {
+//        List<Recipe> filteredActiveRecipes = new ArrayList<>(activeRecipes);
+//        filteredActiveRecipes.retainAll(allergenFilteredRecipes);
+//        return filteredActiveRecipes;
+//}
 
     private List<Recipe> getAllergenFilteredRecipes(List<Recipe> courseFilteredRecipes, List<Integer> allergenIds) {
         List<Recipe> allergenFilteredRecipes = new ArrayList<>();
