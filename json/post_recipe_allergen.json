@@ -12,7 +12,7 @@
   {
     "allergenId": 3,
     "allergenName": "string",
-    "isAvailable": false
+    "isAvailable": true
   },
   {
     "allergenId": 4,

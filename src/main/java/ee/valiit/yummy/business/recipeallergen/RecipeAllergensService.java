@@ -44,8 +44,12 @@ public class RecipeAllergensService {
            // for tsykkel
 
             if (allergenInfo.getIsAvailable()){
-                Integer allergenId = allergenInfo.getAllergenId();
 
+                //null???
+
+
+
+                Integer allergenId = allergenInfo.getAllergenId();
 
                 Allergen allergen = allergenService.getAllergenBy(allergenId);
 
