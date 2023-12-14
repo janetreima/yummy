@@ -12,9 +12,9 @@ public class RecipeAllergenService {
     @Resource
     private RecipeAllergenRepository recipeAllergenRepository;
 
-public List<RecipeAllergen> findRecipeAllergensBy(Integer recipeId) {
-    return recipeAllergenRepository.findRecipeAllergensByRecipeId(recipeId);
-}
+    public List<RecipeAllergen> findRecipeAllergensBy(Integer recipeId) {
+        return recipeAllergenRepository.findRecipeAllergensByRecipeId(recipeId);
+    }
 
     public Boolean recipeExistsBy(Integer recipeId, List<Integer> allergenIds) {
         Optional<Boolean> optionalBoolean = recipeAllergenRepository.existsBy(recipeId, allergenIds, allergenIds.size());
@@ -22,6 +22,9 @@ public List<RecipeAllergen> findRecipeAllergensBy(Integer recipeId) {
             return false;
         }
         return optionalBoolean.get();
+    }
+    public void saveRecipeAllergen(RecipeAllergen recipeAllergen) {
+        recipeAllergenRepository.save(recipeAllergen);
     }
 
 }

@@ -37,6 +37,6 @@ public class RecipeService {
     }
 
     public List<Recipe> getAllActiveRecipes() {
-       return recipeRepository.findAllActiveRecipes(Status.ACTIVE);
+        return recipeRepository.findAllActiveRecipes(Status.ACTIVE);
     }
 }
