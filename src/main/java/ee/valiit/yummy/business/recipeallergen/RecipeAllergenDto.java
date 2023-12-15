@@ -13,4 +13,5 @@ public class RecipeAllergenDto implements Serializable {
 
     Integer allergenId;
     String allergenName;
+    Boolean isAvailable;
 }

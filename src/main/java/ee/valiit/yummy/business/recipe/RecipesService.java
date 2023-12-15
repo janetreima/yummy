@@ -10,7 +10,6 @@ import ee.valiit.yummy.domain.image.ImageService;
 import ee.valiit.yummy.domain.recipe.Recipe;
 import ee.valiit.yummy.domain.recipe.RecipeMapper;
 import ee.valiit.yummy.domain.recipe.RecipeService;
-import ee.valiit.yummy.domain.recipe.allergen.AllergenService;
 import ee.valiit.yummy.domain.recipe.course.Course;
 import ee.valiit.yummy.domain.recipe.course.CourseService;
 import ee.valiit.yummy.domain.recipe.recipeallergen.RecipeAllergen;
@@ -36,9 +35,6 @@ public class RecipesService {
     private RecipeService recipeService;
 
     @Resource
-    private AllergenService allergenService;
-
-    @Resource
     private ImageService imageService;
 
     @Resource
@@ -62,9 +58,6 @@ public class RecipesService {
     @Resource
     private RecipeIngredientMapper recipeIngredientMapper;
 
-    @Resource
-    private ImageConverter imageConverter;
-
     public List<RecipeBasicDto> getAllRecipes() {
         List<Recipe> recipes = recipeService.getAllRecipes();
         return recipeMapper.toRecipeBasicDtos(recipes);
@@ -76,7 +69,7 @@ public class RecipesService {
     }
 
     public RecipeDetailedDto getRecipeBy(Integer recipeId) {
-        Recipe recipe = recipeService.getRecipe(recipeId);
+        Recipe recipe = recipeService.getRecipeBy(recipeId);
         RecipeDetailedDto recipeDetailedDto = recipeMapper.toRecipeDetailedDto(recipe);
         getAndSetRecipeAllergens(recipeId, recipeDetailedDto);
         getAndSetRecipeIngredients(recipeId, recipeDetailedDto);
@@ -195,7 +188,7 @@ public class RecipesService {
 
 
     public List<RecipeBasicDto> getFilteredRecipes(FilteredRecipesRequest filteredRecipesRequest) {
-        List<Recipe> activeRecipes = recipeService.getAllActiveRecipes();
+//        List<Recipe> activeRecipes = recipeService.getAllActiveRecipes();
         List<Recipe> courseFilteredRecipes = handleCourseFilteredRecipes(filteredRecipesRequest);
         return handleAllergenFilteredRecipes(filteredRecipesRequest, courseFilteredRecipes);
     }

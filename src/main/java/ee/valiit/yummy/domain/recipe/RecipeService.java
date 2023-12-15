@@ -16,7 +16,7 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    public Recipe getRecipe(Integer recipeId) {
+    public Recipe getRecipeBy(Integer recipeId) {
         return recipeRepository.getReferenceById(recipeId);
     }
 

@@ -27,4 +27,8 @@ public class RecipeAllergenService {
         recipeAllergenRepository.save(recipeAllergen);
     }
 
+
+    public void deleteRecipeAllergens(Integer recipeId) {
+        recipeAllergenRepository.deleteRecipeAllergensBy(recipeId);
+    }
 }

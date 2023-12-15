@@ -41,29 +41,21 @@ public class RecipeAllergensService {
         Recipe recipe = recipeService.getRecipeBy(recipeId);
 
         for (AllergenInfo allergenInfo : allergenInfos) {
-           // for tsykkel
-
             if (allergenInfo.getIsAvailable()){
-
-                //null???
-
-
-
                 Integer allergenId = allergenInfo.getAllergenId();
-
                 Allergen allergen = allergenService.getAllergenBy(allergenId);
-
                 RecipeAllergen recipeAllergen = new RecipeAllergen();
                 recipeAllergen.setRecipe(recipe);
                 recipeAllergen.setAllergen(allergen);
-
                 recipeAllergenService.saveRecipeAllergen(recipeAllergen);
             }
-
-
         }
 
 
 
+    }
+
+    public void deleteRecipeAllergens(Integer recipeId) {
+        recipeAllergenService.deleteRecipeAllergens(recipeId);
     }
 }

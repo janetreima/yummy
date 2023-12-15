@@ -13,7 +13,7 @@ public class AllergensController {
     @Resource
     private AllergensService allergensService;
 
-    @GetMapping("/recipe/allergens")
+    @GetMapping("/allergens")
     @Operation(summary = "Tagastab kõik allergeenide valikud")
     public List<AllergenInfo> getAllAllergens() {
         return allergensService.getAllAllergens();
